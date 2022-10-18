@@ -33,6 +33,7 @@ public class Lexer {
 		symbols.put('^', TokenType.EXP);
 		symbols.put('(', TokenType.LPAR);
 		symbols.put(')', TokenType.RPAR);
+		symbols.put(';', TokenType.ENDL);
 	}
 	
 	public boolean nextToken() {
@@ -90,7 +91,7 @@ public class Lexer {
 	}
 	
 	//End of Code
-	private boolean EOC() {
+	public boolean EOC() {
 		return index == codeLength;
 	}
 	

@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 import Lexer.Lexer;
 import Parser.Parser;
-import Visitor.Visitor;
+import Visitor.CodeVisitor;
+import Visitor.Evaluator;
 
 public class Runner {
 
@@ -19,12 +20,13 @@ public class Runner {
 		
 		Parser parser = new Parser(lexer);
 		
-		Visitor visitor = new Visitor(parser);
-		double value = visitor.visit();
-		if (Math.abs(value - Math.round(value)) < 0.00001)
-			System.out.println((int) Math.round(value));
-		else
-			System.out.println(value);
+		CodeVisitor visitor = new CodeVisitor(parser);
+		visitor.visit();
+		
+//		if (Math.abs(value - Math.round(value)) < 0.00001)
+//			System.out.println((int) Math.round(value));
+//		else
+//			System.out.println(value);
 		
 
 	}

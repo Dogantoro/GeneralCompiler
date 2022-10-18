@@ -1,9 +1,9 @@
 package AST;
 
 import Token.Token;
-import Visitor.Visitor;
+import Visitor.Evaluator;
 
-public class Const implements AST {
+public class Const implements ASTE {
 	private Token constant;
 	
 	public Const(Token constant) {
@@ -15,7 +15,7 @@ public class Const implements AST {
 	}
 	
 	@Override
-	public double accept(Visitor visitor) {
+	public double accept(Evaluator visitor) {
 		return visitor.visitConst(this);
 	}
 	

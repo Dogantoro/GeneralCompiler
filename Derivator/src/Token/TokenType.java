@@ -10,5 +10,6 @@ public enum TokenType {
 	LPAR,
 	RPAR,
 	DECIMAL,
-	CONST
+	CONST,
+	ENDL,
 }

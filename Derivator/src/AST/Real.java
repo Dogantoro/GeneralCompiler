@@ -1,9 +1,9 @@
 package AST;
 
 import Token.Token;
-import Visitor.Visitor;
+import Visitor.Evaluator;
 
-public class Real implements AST{
+public class Real implements ASTE{
 	private Token num;
 	
 	public Real(Token num) {
@@ -15,7 +15,7 @@ public class Real implements AST{
 	}
 	
 	@Override
-	public double accept(Visitor visitor) {
+	public double accept(Evaluator visitor) {
 		return visitor.visitReal(this);
 	}
 

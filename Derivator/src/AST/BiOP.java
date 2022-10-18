@@ -1,21 +1,21 @@
 package AST;
 
 import Token.Token;
-import Visitor.Visitor;
+import Visitor.Evaluator;
 
-public class BiOP implements AST{
-	private AST left, right;
+public class BiOP implements ASTE{
+	private ASTE left, right;
 	private Token op;
-	public BiOP(AST left, Token op, AST right) {
+	public BiOP(ASTE left, Token op, ASTE right) {
 		super();
 		this.left = left;
 		this.op = op;
 		this.right = right;
 	}
-	public AST getLeft() {
+	public ASTE getLeft() {
 		return left;
 	}
-	public AST getRight() {
+	public ASTE getRight() {
 		return right;
 	}
 	public Token getOp() {
@@ -23,7 +23,7 @@ public class BiOP implements AST{
 	}
 	
 	@Override
-	public double accept(Visitor visitor) {
+	public double accept(Evaluator visitor) {
 		return visitor.visitBiOP(this);
 	}
 	

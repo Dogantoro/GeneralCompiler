@@ -1,28 +1,28 @@
 package AST;
 
 import Token.Token;
-import Visitor.Visitor;
+import Visitor.Evaluator;
 
-public class Function implements AST{
+public class Function implements ASTE{
 
 	private Token function;
-	private AST param;
+	private ASTE param;
 	
 	public Token getFunction() {
 		return function;
 	}
 
-	public AST getParam() {
+	public ASTE getParam() {
 		return param;
 	}
 
-	public Function(Token function, AST param) {
+	public Function(Token function, ASTE param) {
 		this.function = function;
 		this.param = param;
 	}
 	
 	@Override
-	public double accept(Visitor visitor) {
+	public double accept(Evaluator visitor) {
 		return visitor.visitFunc(this);
 	}
 

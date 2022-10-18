@@ -1,18 +1,18 @@
 package AST;
 
 import Token.Token;
-import Visitor.Visitor;
+import Visitor.Evaluator;
 
-public class UnaryOP implements AST{
-	private AST node;
+public class UnaryOP implements ASTE{
+	private ASTE node;
 	private Token op;
 	
-	public UnaryOP(Token op, AST node) {
+	public UnaryOP(Token op, ASTE node) {
 		this.op = op;
 		this.node = node;
 	}
 
-	public AST getNode() {
+	public ASTE getNode() {
 		return node;
 	}
 
@@ -21,7 +21,7 @@ public class UnaryOP implements AST{
 	}
 	
 	@Override
-	public double accept(Visitor visitor) {
+	public double accept(Evaluator visitor) {
 		return visitor.visitUnaryOP(this);
 	}
 }
