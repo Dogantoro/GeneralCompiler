@@ -1,7 +1,5 @@
 package Parser;
 
-import java.util.Queue;
-
 import AST.*;
 import Exceptions.ParsingError;
 import Lexer.Lexer;
@@ -97,10 +95,27 @@ public class Parser {
 		return out;
 	}
 	
+	public ASTC LET() {
+		String type = lexer.getToken().getValue();
+		next(TokenType.LET);
+		String ID = lexer.getToken().getValue();
+		next(TokenType.CONST);
+		next(TokenType.EQUALS);
+		ASTE val = add_sub();
+		return new Let(ID, val);
+	}
+	
 	public AST line() {
-		ASTC code = null;//new Line(add_sub(), null);
+		ASTC code = null; //new Line(add_sub(), null);
 		while (!lexer.EOC()) {
-			code = new Line(add_sub(), code, LineType.DISP);
+			
+			//Find command type
+			if (lexer.getToken().getType() == TokenType.LET)
+				code = new Line(LET(), code, LineType.LET);
+			else
+				code = new Line(add_sub(), code, LineType.DISP);
+			
+			//Check Semicolon at End
 			if (!next(TokenType.ENDL)) {
 				String corrected = (lexer.getIndex() > 8 ? "..." : "");
 				corrected += lexer.getCode().substring(Math.max(0, lexer.getIndex() - 8), lexer.getIndex()) + ";";

@@ -1,5 +1,6 @@
 package AST;
 
 public enum LineType {
-	DISP
+	DISP,
+	LET,
 }

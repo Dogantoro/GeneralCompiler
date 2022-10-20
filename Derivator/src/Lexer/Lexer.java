@@ -13,6 +13,7 @@ public class Lexer {
 	private int codeLength;
 	
 	private Set<Character> numerical, whitespace;
+	private Set<String> types;
 	private HashMap<Character, TokenType> symbols;
 	
 	public Lexer(String code) {
@@ -23,6 +24,7 @@ public class Lexer {
 		//Character sets
 		numerical = Set.of('0','1','2','3','4','5','6','7','8','9','.');
 		whitespace = Set.of(' ', '\n', '\t', '\r');
+		types = Set.of("double");
 		
 		//Symbol mapping
 		symbols = new HashMap<>();
@@ -34,6 +36,8 @@ public class Lexer {
 		symbols.put('(', TokenType.LPAR);
 		symbols.put(')', TokenType.RPAR);
 		symbols.put(';', TokenType.ENDL);
+		symbols.put('=', TokenType.EQUALS);
+		
 	}
 	
 	public boolean nextToken() {
@@ -63,10 +67,12 @@ public class Lexer {
 			return true;
 		}
 		
-		//Functions
+		//IDs
 		if (Character.isAlphabetic(Char)) {
 			String ID = readString();
-			if (!EOC() && code.charAt(index)=='(') {
+			if (types.contains(ID))
+				currentToken = new Token(TokenType.LET, ID);
+			else if (!EOC() && code.charAt(index)=='(') {
 				currentToken = new Token(TokenType.FUNC, ID);
 			} else {
 				currentToken = new Token(TokenType.CONST, ID);

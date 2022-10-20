@@ -1,7 +1,10 @@
 package Visitor;
 
+import java.util.HashMap;
+
 import AST.ASTC;
 import AST.ASTE;
+import AST.Let;
 import AST.Line;
 import Parser.Parser;
 
@@ -38,6 +41,14 @@ public class CodeVisitor implements Visitor{
 					else
 						System.out.println(value);
 				} break;
+			case LET:
+				{
+					visit((ASTC) line.getThisLine());
+				} break;
 		}
+	}
+	
+	public void visitLet(Let let) {
+		eval.addConst(let.getID(), let.value());
 	}
 }

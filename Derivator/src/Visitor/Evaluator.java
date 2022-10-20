@@ -56,6 +56,10 @@ public class Evaluator implements Visitor{
 		constMap.put("phi", 1.618033988749894);
 		
 	}
+	
+	public void addConst(String ID, ASTE val) {
+		constMap.put(ID, visit(val));
+	}
 
 	public double visit(ASTE node) {
 		return node.accept(this);

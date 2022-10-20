@@ -12,4 +12,6 @@ public enum TokenType {
 	DECIMAL,
 	CONST,
 	ENDL,
+	LET,
+	EQUALS,
 }
